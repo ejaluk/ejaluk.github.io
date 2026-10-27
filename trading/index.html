@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quant Research Framework · Kofi Ejuku</title>
+<meta name="description" content="Data analyst portfolio of Kofi Ejuku. A quantitative research case study told in five phases: gates, data, testing, verdict, iteration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="../index.html" aria-label="Kofi Ejuku, all projects">← KOFI EJUKU <b>/ ALL PROJECTS</b></a>
+    <nav class="phases" aria-label="Phases">
+      <a href="#p1">01 Gates</a>
+      <a href="#p2">02 Data</a>
+      <a href="#p3">03 Test</a>
+      <a href="#p4">04 Verdict</a>
+      <a href="#p5">05 Iterate</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero" id="top">
+    <div class="wrap">
+      <p class="tag-mono rv">A research story in five phases</p>
+      <h1 class="rv">I test ideas<br>until they <span class="volt">break.</span></h1>
+      <p class="lede rv">I'm Kofi Ejuku — a Computer Science graduate from York University, heading into data analysis. This is the story of my main research project: a quantitative trading framework where <b>every strategy that failed its statistical gates was rejected — including the ones I liked.</b></p>
+      <div class="cta-row rv">
+        <a class="btn solid" href="#p1">Read the case study ↓</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <span class="scroll-hint" aria-hidden="true">Scroll</span>
+  </div>
+
+  <!-- ============ KPI BAND ============ -->
+  <div class="band" aria-label="Project statistics">
+    <div class="wrap band-inner fx">
+      <div class="kpi"><div class="n"><span class="count" data-to="1952">0</span></div><div class="l">Trades analyzed (v1.1)</div></div>
+      <div class="kpi"><div class="n"><span class="count" data-to="170">0</span>K+</div><div class="l">Rows of time-series data</div></div>
+      <div class="kpi"><div class="n"><span class="count" data-to="45">0</span></div><div class="l">Automated tests · 0 regressions</div></div>
+      <div class="kpi"><div class="n"><span class="count" data-to="3">0</span></div><div class="l">Strategy versions closed on evidence</div></div>
+    </div>
+  </div>
+
+  <!-- ============ PHASE 01 ============ -->
+  <section class="phase wrap fx" id="p1">
+    <div class="ph-head"><span class="ph-num">Phase 01</span><h2>Set the gates before the game</h2></div>
+    <p class="prose">The project started with a discretionary trading idea that <em>felt</em> profitable. The research question: <strong>does it survive once it's made mechanical and measured honestly?</strong> Before a single backtest ran, pass/fail criteria were committed — on a simulated $50K account, after realistic spread, commission, and slippage costs.</p>
+    <table class="gates">
+      <caption class="visually-hidden"></caption>
+      <thead><tr><th scope="col">Gate</th><th scope="col">Threshold</th><th scope="col">Why</th></tr></thead>
+      <tbody>
+        <tr><td>Expectancy</td><td class="mono">&gt; $0 / trade</td><td>Positive expected value after costs — not just a lucky streak.</td></tr>
+        <tr><td>Max drawdown</td><td class="mono">&lt; 8%</td><td>A result that survives only by tolerating deep losses isn't a result.</td></tr>
+        <tr><td>Win rate</td><td class="mono">≥ 55%</td><td>The breakeven threshold for the strategy's 1:1 risk-reward structure.</td></tr>
+        <tr><td>Sample size</td><td class="mono">≥ 200 trades</td><td>Below this, performance is indistinguishable from noise. No exceptions.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <span class="t">Principle</span>
+      <p>Committing the bar before the analysis is the cheapest defense against fooling yourself. The results never got to move the goalposts.</p>
+    </div>
+  </section>
+
+  <!-- ============ PHASE 02 ============ -->
+  <section class="phase wrap fx" id="p2">
+    <div class="ph-head"><span class="ph-num">Phase 02</span><h2>Earn the data before using it</h2></div>
+    <p class="prose"><strong>170,000+ rows</strong> of financial time-series data across four currency markets and two timeframes — arriving with UTF-16 encoding, broker timezone offsets, and a stretch of legacy history contaminated with mixed-resolution records.</p>
+    <ul class="report">
+      <li><b>One door in.</b> Every dataset flows through a single validated ingestion pipeline — a fix applied once is applied everywhere.</li>
+      <li><b>A hard quality floor.</b> Contaminated history is blocked unconditionally in code, not by convention or memory.</li>
+      <li><b>Anomalies investigated, not deleted.</b> Apparent "future-dated" records were diagnosed as a broker timezone artifact — documented, not silently dropped.</li>
+      <li><b>A firewall around validation data.</b> The hold-out set is untouched by design decisions; any attempted access during research raises an error in code.</li>
+    </ul>
+    <figure class="fig fx">
+      <div class="bar-row">
+        <span class="bar-label">Exploration</span>
+        <div class="bar-track"><div class="bar-fill dim" style="width:26.6%"></div></div>
+        <span class="bar-val">44,920</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Validation</span>
+        <div class="bar-track"><div class="bar-fill" style="width:73.4%"></div></div>
+        <span class="bar-val">124,042</span>
+      </div>
+      <figcaption><b>Fig. 1 — The train/validation split</b> (rows, primary timeframe). Hypotheses are formed on exploration data only. Validation stays sealed until a strategy has already earned its way through every gate.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ PHASE 03 ============ -->
+  <section class="phase wrap fx" id="p3">
+    <div class="ph-head"><span class="ph-num">Phase 03</span><h2>Distrust good news</h2></div>
+    <p class="prose">The framework: a Python backtesting engine, a <strong>45-test automated suite held at zero regressions</strong>, one change at a time, and counterfactual analysis before any rule change. But the phase is best summarized by one incident:</p>
+    <div class="duo">
+      <div class="cell">
+        <h3>The "great" result</h3>
+        <div class="big pos">95.6%</div>
+        <div class="sub">win rate · dev slice</div>
+        <p>A development run showed one setup winning almost every trade. The tempting move: celebrate and scale up.</p>
+      </div>
+      <div class="cell">
+        <h3>The actual finding</h3>
+        <div class="big neg">A bug.</div>
+        <div class="sub">inverted entry trigger</div>
+        <p>I halted the pipeline instead — <b>no real strategy wins 95% of the time.</b> Investigation found the entry logic inverted, producing physically impossible fills. Fixed, re-tested, moved on.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="t">Principle</span>
+      <p>Results that look too good are treated as the most urgent bug reports. Skepticism is applied hardest to the numbers I most want to believe.</p>
+    </div>
+  </section>
+
+  <!-- ============ PHASE 04 ============ -->
+  <section class="phase wrap fx" id="p4">
+    <div class="ph-head"><span class="ph-num">Phase 04</span><h2>The verdict the data gave</h2></div>
+    <p class="prose">The first full strategy generation went through four rounds of backtesting and bug-fixing to reach a clean, trustworthy run: <strong>1,952 trades over 12+ months across four markets.</strong> Then it faced the gates.</p>
+    <figure class="fig fx">
+      <div class="bar-row">
+        <span class="bar-label">Win rate — actual</span>
+        <div class="bar-track">
+          <div class="bar-fill red" style="width:35.2%"></div>
+          <div class="bar-marker" style="left:55%"><span>55% required</span></div>
+        </div>
+        <span class="bar-val">35.2%</span>
+      </div>
+      <figcaption><b>Fig. 2 — Result vs. requirement.</b> Win rate 35.2% against a 55% breakeven gate · expectancy −$3.40 per trade · max drawdown 14.58% against an 8% ceiling. Three of four gates failed.</figcaption>
+    </figure>
+    <div class="verdict fx">
+      <div class="stamp">Hypothesis rejected</div>
+      <p>The entry concept had <b>no measurable edge</b> — the directional hit rate on clean 1:1 trades was 36.7%, worse than a coin flip. The version was closed with a formal written post-mortem establishing the verified cause of death before any successor was designed.</p>
+      <div class="meta">v1.1 · closed on evidence · post-mortem on file</div>
+    </div>
+    <p class="prose" style="margin-top:2.8rem">One counterfactual from this phase mattered more than the headline: the mechanical exit rules had ugly win rates (~21%) and looked like the problem. <strong>Testing their removal showed expectancy getting ~4× worse</strong> — roughly −$10 to −$40 per trade. They weren't causing losses; they were damage control on bad entries. The entry signal was the disease; the exits were the tourniquet.</p>
+  </section>
+
+  <!-- ============ PHASE 05 ============ -->
+  <section class="phase wrap fx" id="p5">
+    <div class="ph-head"><span class="ph-num">Phase 05</span><h2>Iterate — without flinching</h2></div>
+    <p class="prose">The second generation rebuilt the entry concept around a different structural idea and ran a <strong>19-month, 1,507-trade</strong> campaign. The gates didn't soften, and neither did the answers:</p>
+    <div class="duo">
+      <div class="cell">
+        <h3>Setup A</h3>
+        <div class="big neg">−$16.08</div>
+        <div class="sub">per trade · 1,421 trades</div>
+        <p>Structurally negative across <b>every market and every session.</b> Rejected — no filter could rescue a signal that was wrong at the core.</p>
+      </div>
+      <div class="cell">
+        <h3>Setup B</h3>
+        <div class="big pos">+$5.14</div>
+        <div class="sub">per trade · 86 trades</div>
+        <p>Positive expectancy — but <b>86 trades is under half the 200-trade floor.</b> Parameter sweeps confirmed frequency couldn't rise without destroying the edge. Ruled statistically insufficient, not "promising."</p>
+      </div>
+    </div>
+    <p class="prose" style="margin-top:2.8rem">That Setup B call is the one I'd defend in any interview: a positive number I <strong>refused to believe</strong>, because the sample size said I hadn't earned the right to believe it. Research continues on the third generation — same gates, same firewall, same discipline.</p>
+    <div class="callout">
+      <span class="t">Why this matters to an employer</span>
+      <p>It would have been easy to tune parameters until something looked good and declare victory. Rejecting my own hypotheses on pre-committed criteria — three versions in a row — is exactly the discipline I'll bring to your data.</p>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="phase wrap fx" id="about">
+    <div class="ph-head"><span class="ph-num">§ About</span><h2>The analyst behind the memo</h2></div>
+    <div class="about-grid">
+      <div>
+        <p class="prose">I like problems where the answer has to be <strong>earned from the data</strong> rather than assumed. That instinct started in CS coursework, sharpened over every phase above, and is being formalized through the Google Data Analytics certificate — SQL, Tableau, and R on top of the Python I use daily.</p>
+        <p class="prose">Outside the terminal: I've led a <strong>15-person fundraising team</strong> representing Sunnybrook Foundation, CNIB, and Plan International — where I learned that presenting numbers to people matters as much as producing them — and I hold the Duke of Edinburgh Gold Award, earned in part on the summit of Mount Kilimanjaro.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Education</dt><dd>BA Computer Science, York University <span class="soft">· 2021–2026</span></dd></div>
+        <div><dt>Certificate</dt><dd>Google Data Analytics <span class="soft">· expected Jan 2027</span></dd></div>
+        <div><dt>Analysis</dt><dd>Python (pandas) · SQL · R · Excel</dd></div>
+        <div><dt>Tools</dt><dd>Tableau · Git · pytest</dd></div>
+        <div><dt>Base</dt><dd>Toronto, ON <span class="soft">· open to full-time, 2026</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <footer class="contact" id="contact">
+    <div class="wrap">
+      <h2>Hire someone who checks their own work hardest.</h2>
+      <p class="prose" style="margin-top:1.4rem">I'm looking for a full-time data analyst role starting 2026. If your team values evidence over ego, <b>let's talk.</b></p>
+      <div class="cta-row">
+        <a class="btn solid" href="mailto:ejaluk@gmail.com">ejaluk@gmail.com</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/kofi-ejuku-105328234" rel="me">LinkedIn ↗</a>
+        <a class="btn ghost" href="https://github.com/ejaluk" rel="me">GitHub ↗</a>
+      </div>
+      <div class="foot">
+        <span>Kofi Ejuku · Toronto, ON</span>
+        <span>All figures from simulated backtests · no live performance implied</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>
